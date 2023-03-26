@@ -13,6 +13,11 @@ formEl.addEventListener('submit', event => {
   const step = parseInt(stepEl.value);
   const amount = parseInt(amountEl.value);
 
+  if (delay < 0 || step < 0 || amount <= 0) {
+    Notiflix.Notify.failure('Please check that the values entered are correct.');
+    return;
+  }
+
   for (let i = 0; i < amount; i += 1) {
     const position = i + 1;
     const promiseDelay = delay + i * step;
