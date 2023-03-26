@@ -19,7 +19,6 @@ const options = {
   minuteIncrement: 1,
   onClose(selectedDates) {
     if (selectedDates[0] < new Date()) {
-      btnStart.disabled = true;
       Notiflix.Report.failure('Please choose a date in the future');
     } else {
       btnStart.disabled = false;
@@ -30,7 +29,7 @@ const options = {
 flatpickr(dataPicker, options);
 
 let intervalId;
-
+btnStart.disabled = true;
 btnStart.addEventListener('click', () => {
   const endDate = new Date(dataPicker.value);
   const now = options.defaultDate;
