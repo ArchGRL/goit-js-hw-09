@@ -32,16 +32,13 @@ let intervalId;
 btnStart.disabled = true;
 btnStart.addEventListener('click', () => {
   const endDate = new Date(dataPicker.value);
-  const now = options.defaultDate;
-
-  const timeDifference = endDate - now;
-  addLeadingZero(convertMs(timeDifference));
 
   intervalId = setInterval(() => {
-    const timeDifference = endDate - new Date();
+    if (endDate > new Date()) {
+      const timeDifference = endDate - new Date();
     addLeadingZero(convertMs(timeDifference));
-
-    if (timeDifference <= 0) {
+    btnStart.disabled = true;
+    } else {
       clearInterval(intervalId);
     }
   }, 1000);
